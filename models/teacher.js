@@ -5,11 +5,16 @@ const Teacher = sequelize.define('teacher', {
   teacherId: {
     field: 'teacher_id',
     type: DataTypes.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    allowNull: false
   },
   teacherName: {
     field: 'teacher_name',
     type: DataTypes.STRING
+  },
+  age: {
+    field: 'age',
+    type: DataTypes.INTEGER
   },
   createBy: {
     field: 'create_by',
