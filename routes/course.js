@@ -84,6 +84,7 @@ router.post('/course', (req, res) => {
 router.put('/course', (req, res) => {
   Course.update({
     courseName: req.body.courseName,
+    teacherId: req.body.teacherId,
     updateBy: 'developer',
     updateDate: new Date()
   },
