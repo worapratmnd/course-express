@@ -11,9 +11,9 @@ const Course = sequelize.define('course', {
     field: 'course_name',
     type: DataTypes.STRING
   },
-  teacherId: {
-    field: 'teacher_id',
-    type: DataTypes.INTEGER
+  courseDescription: {
+    field: 'course_description',
+    type: DataTypes.STRING
   },
   createBy: {
     field: 'create_by',

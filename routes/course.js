@@ -5,15 +5,6 @@ const sequelize = require('../database/sequelize');
 const Course = require('../models/course');
 const Teacher = require('../models/teacher');
 
-/* relation */
-Course.belongsTo(Teacher, {
-  foreignKey: 'teacherId'
-});
-Teacher.hasMany(Course, {
-  foreignKey: 'teacherId'
-});
-
-
 /* GET test db connection listing. */
 router.get('/', async (req, res, next) => {
   try {
@@ -47,7 +38,7 @@ router.get('/course', (req, res) => {
 /* GET course by id */
 router.get('/course/:id', (req, res) => {
   let id = req.params.id;
-  Course.findByPk(id, { include: [Teacher] }).then((course) => {
+  Course.findByPk(id).then((course) => {
     if (course) {
       res.json(course);
     } else {
@@ -66,6 +57,7 @@ router.post('/course', (req, res) => {
       return Course.create({
         courseId: id,
         courseName: req.body.courseName,
+        courseDescription: req.body.courseDescription,
         createBy: 'developer',
         createDate: new Date()
       })
@@ -84,7 +76,7 @@ router.post('/course', (req, res) => {
 router.put('/course', (req, res) => {
   Course.update({
     courseName: req.body.courseName,
-    teacherId: req.body.teacherId,
+    courseDescription: req.body.courseDescription,
     updateBy: 'developer',
     updateDate: new Date()
   },
@@ -152,7 +144,8 @@ router.post('/teacher', (req, res) => {
     .then(id => {
       return Teacher.create({
         teacherId: id,
-        teacherName: req.body.teacherName,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         age: req.body.age,
         createBy: 'developer',
         createDate: new Date()
@@ -171,7 +164,8 @@ router.post('/teacher', (req, res) => {
 /* PUT update teacher */
 router.put('/teacher', (req, res) => {
   Teacher.update({
-    teacherName: req.body.teacherName,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     age: req.body.age,
     updateBy: 'developer',
     updateDate: new Date()

@@ -8,8 +8,12 @@ const Teacher = sequelize.define('teacher', {
     primaryKey: true,
     allowNull: false
   },
-  teacherName: {
-    field: 'teacher_name',
+  firstName: {
+    field: 'first_name',
+    type: DataTypes.STRING
+  },
+  lastName: {
+    field: 'last_name',
     type: DataTypes.STRING
   },
   age: {
